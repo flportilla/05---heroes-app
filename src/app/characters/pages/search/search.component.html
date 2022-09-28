@@ -1,1 +1,36 @@
-<p>search works!</p>
+<div fxLayout="column">
+
+    <div>
+        <h1>Search character</h1>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div fxLayout="column">
+        
+        <h3>Search</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Search</mat-label>
+            <input 
+                type="text" 
+                [(ngModel)]="term" 
+                matInput [matAutocomplete]="auto" 
+                (input)="searching()"
+                >
+            <mat-autocomplete 
+                #auto="matAutocomplete" 
+                (optionSelected)="optionSelected($event)"
+                >
+                    <mat-option 
+                        *ngFor="let char of characters" [value]="char"
+                    >
+                            {{char.name}}
+                    </mat-option>
+
+                    <mat-option value="" *ngIf="characters.length === 0 && term.length > 0">
+                        Nothing found with the term: {{term}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <pre>{{selectedCharacter | json}}</pre>
+</div>

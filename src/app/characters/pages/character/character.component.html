@@ -1,1 +1,37 @@
-<p>character works!</p>
+<mat-grid-list cols="1" *ngIf="!char; else divChar">
+
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<ng-template #divChar>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <div fxFlex="50">
+            <h1>Name: {{char.name}} - <small>Innate: {{char.innate}}</small></h1>
+            <mat-divider></mat-divider>
+            <br>
+            <img [src]="char | image">
+
+        </div>
+        <div fxFlex="50">
+            <h1>Origin: {{char.origin}}</h1>
+            <mat-divider></mat-divider>
+            <br>
+            <span><strong>Build: </strong>{{char.build}}</span>
+            <br>
+            <span><strong>Height: </strong>{{char.height}}</span>
+            <br>
+            <span><strong>Weight: </strong>{{char.weight}}</span>
+            <br>
+            <span><strong>Age/sex: </strong>{{char.age_sex}}</span>
+            <br>
+            <span><strong>Dominant side: </strong>{{char.dominant_side}}</span>
+            <br>
+            <br>
+            <br>
+            <button mat-button color="warn" [routerLink]="['/characters']">Go back</button>
+        </div>
+    </div>
+</ng-template>

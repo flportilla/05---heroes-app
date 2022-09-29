@@ -1,1 +1,116 @@
-<p>add works!</p>
+<h1>
+    {{
+        (character.id)
+            ? 'Edit'
+            : 'New'
+    }}
+    character</h1>
+
+<div 
+    fxLayout="row" 
+    fxLayout.xs="column" 
+    fxLayoutGap="40px">
+
+    <div fxFlex="50" fxLayout="column">
+
+        <div 
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutGap="20px"
+            >
+            <mat-form-field 
+                fxFlex="100" 
+                fxLayout.xs="column"
+                >
+                <mat-label>Name</mat-label>
+                <input 
+                [(ngModel)]="character.name"
+                matInput
+                type="text"
+                >
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100">
+            <mat-label>Innate</mat-label>
+            <input 
+                matInput
+                type="text"
+                [(ngModel)]="character.innate"
+                >
+            </mat-form-field>
+        </div>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Origin</mat-label>
+            <input 
+                matInput
+                type="text"
+                [(ngModel)]="character.origin"
+            >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Career</mat-label>
+            <input 
+                matInput
+                type="text"
+                [(ngModel)]="character.career"
+            >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Dominant side</mat-label>
+            <mat-select 
+                required
+                [(ngModel)]="character.dominant_side"
+                >
+                <mat-option 
+                    *ngFor="let side of dominantSide"
+                    [value]="side.id"
+                >
+                {{side.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Picture URL</mat-label>
+            <input 
+                matInput
+                type="url"
+                [(ngModel)]="character.alt_img"
+            >
+        </mat-form-field>
+
+        <br>
+        <div fxLayout>
+            <button 
+                mat-raised-button 
+                color="primary"
+                (click)="save()"
+                >
+                <mat-icon>save</mat-icon>
+                {{
+                    (character.id)
+                        ? 'Update'
+                        : 'Create'
+                }}
+        </button>
+        <span class="spacer"></span>
+            <button 
+                *ngIf="character.id"
+                mat-raised-button
+                (click)="delete()"
+                color="warn"
+                >
+                    <mat-icon>remove</mat-icon>
+                Delete
+            </button>
+        </div>
+
+    </div>
+
+    <div fxFlex="50">
+        <img [src]="character | image" alt="">
+    </div>
+</div>

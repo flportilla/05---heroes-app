@@ -12,6 +12,7 @@ import { ListComponent } from './pages/list/list.component';
 import { MaterialModule } from '../material/material.module';
 import { CharCardComponent } from './components/char-card/char-card.component';
 import { ImagePipe } from './pipes/image.pipe';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ImagePipe } from './pipes/image.pipe';
     ListComponent,
     CharCardComponent,
     ImagePipe,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,

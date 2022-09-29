@@ -26,4 +26,16 @@ export class CharactersService {
     return this.http.get<Characters[]>(`${this.baseUrl}/chars?q=${term}&_limit=5`)
   }
 
+  addCharacter(character: Characters):Observable<Characters> {
+    return this.http.post<Characters>(`${this.baseUrl}/chars`, character)
+  }
+
+  updateCharacter(character: Characters):Observable<Characters> {
+    return this.http.put<Characters>(`${this.baseUrl}/chars/${character.id}`, character)
+  }
+
+  deleteCharacter(id: string):Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/chars/${id}`)
+  }
+
 }
